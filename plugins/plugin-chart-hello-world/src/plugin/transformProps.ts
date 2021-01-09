@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ChartProps, TimeseriesDataRecord } from '@superset-ui/core';
+import { ChartProps } from '@superset-ui/core';
 
 export default function transformProps(chartProps: ChartProps) {
   /**
@@ -49,24 +49,17 @@ export default function transformProps(chartProps: ChartProps) {
    * be seen until restarting the development server.
    */
   const { width, height, formData, queriesData } = chartProps;
-  const { boldText, headerFontSize, headerText } = formData;
-  const data = queriesData[0].data as TimeseriesDataRecord[];
-
+  // const { boldText, headerFontSize, headerText } = formData;
+  // const data = queriesData[0].data as TimeseriesDataRecord[];
+  const records = queryData.data;
   console.log('formData via TransformProps.ts', formData);
 
   return {
     width,
     height,
-
-    data: data.map(item => ({
-      ...item,
-      // convert epoch to native Date
-      // eslint-disable-next-line no-underscore-dangle
-      __timestamp: new Date(item.__timestamp as number),
-    })),
-    // and now your control data, manipulated as needed, and passed through as props!
-    boldText,
-    headerFontSize,
-    headerText,
+    data: records,
+    allColumnsX: 'IMGURL',
+    // allColumnsY: 'NAME',
+    allColumns: formData.groupby,
   };
 }
