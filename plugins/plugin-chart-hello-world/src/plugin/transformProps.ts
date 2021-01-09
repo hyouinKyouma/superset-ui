@@ -48,7 +48,7 @@ export default function transformProps(chartProps: ChartProps) {
    * function during development with hot reloading, changes won't
    * be seen until restarting the development server.
    */
-  const { width, height, formData, queriesData } = chartProps;
+  const { width, height, formData, queriesData, queryData } = chartProps;
   // const { boldText, headerFontSize, headerText } = formData;
   // const data = queriesData[0].data as TimeseriesDataRecord[];
   const records = queryData.data;
